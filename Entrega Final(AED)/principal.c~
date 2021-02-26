@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include "Cliente.h"
+#include "telas.h"
+#include "Produto.h"
+
+int main(int argc, char *argv[]) {
+	int op1, op2;
+	lista_cliente lc;
+	lista_produto lp;
+	inicializar_lista_cliente(&lc);
+	inicializar_lista_produto(&lp);
+
+	do{
+		op1 = menu_principal();	
+		switch(op1) {
+			case 1: 
+				do{
+					op2 = menu_cliente();
+					switch(op2) {
+						case 1:
+							adcionar_cliente_inicio(&lc, ler_cliente());
+							break;
+						case 2:
+							listar_cliente(&lc);
+							break;
+						case 3:
+							break;
+						case 4:
+							salvar_cliente(&lc);
+							break;
+						case 5:
+							carregar_clientes(&lc);
+							break;
+						default:
+							printf("Opção invalida");
+							system("read b");
+						
+					}
+
+				} while (op2 != 3);
+				break;
+			case 3:
+				return 1;
+			default:
+				printf("Opção invalida\n");
+				system("read b");
+
+		}	
+
+
+	} while(op1 != 3);
+
+	adcionar_cliente_inicio(&lc, ler_cliente());
+	return 1;
+}
+

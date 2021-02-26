@@ -1,0 +1,26 @@
+#ifndef _ITEM_H
+#define _ITEM_H
+
+#include<stdio.h>
+#include <stdio_ext.h>
+#include <stdlib.h>
+
+
+typedef struct item{
+	int IDproduto;
+	int Qtd_produto;
+	char obs[100];
+}item;
+
+typedef struct no_item{
+	item dado;
+	struct no_item *proximo;
+}no_item;
+
+typedef struct lista_item {
+	no_item *inicio;
+} lista_item;
+
+
+
+

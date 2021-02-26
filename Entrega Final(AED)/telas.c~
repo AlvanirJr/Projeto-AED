@@ -1,0 +1,33 @@
+#include "telas.h"
+
+int menu_principal() {
+	int op;
+	system("clear");
+	printf("-------AGENDA TABAJARA 1.9------------\n");
+	printf("1\tCadastar Clientes\n");
+	printf("2\tCadastrar Produto\n");
+	printf("3\tSair\n");
+	printf("\n_");
+	
+	scanf("%d", &op);
+	return op;
+}
+
+int menu_cliente() {
+	int op;
+	system("clear");
+	printf("-------AGENDA TABAJARA 1.9------------\n");
+	printf("-->>CADASTRO DE Cliente------------\n");
+	printf("1\tInserir Cliente\n");
+	printf("2\tListar Clientes\n");
+	printf("3\tVoltar para o menu principal\n");
+	printf("4\tSalvar Arquivo dos Clientes\n");
+	printf("5\tCarregar Arquivo dos Clientes\n");
+	printf("6\tFazer pedido\n");
+	printf("\n_");
+	
+	scanf("%d", &op);
+	return op;
+
+}
+

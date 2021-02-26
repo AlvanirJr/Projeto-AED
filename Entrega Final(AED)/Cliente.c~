@@ -1,0 +1,101 @@
+#include "Cliente.h"
+
+void inicializar_lista_cliente(lista_cliente *l){
+	
+	l->inicio = NULL;
+}
+
+
+void adcionar_cliente_inicio(lista_cliente *l, cliente c){
+	
+	no_cliente *novo =  (no_cliente *) malloc (sizeof(no_cliente));
+	novo->proximo = l->inicio;
+	novo->dado = c;
+	l->inicio = novo;
+
+}
+
+cliente ler_cliente(){
+	
+	cliente *c = (cliente *) malloc (sizeof(cliente));
+	__fpurge(stdin);
+
+	printf("Digite o codigo do cliente: \n");
+	scanf("%d", &c->IDcliente);
+	__fpurge(stdin);
+
+	printf("Digite o nome do cliente: \n");
+	fgets(c->nome, sizeof(c->nome), stdin);
+
+	__fpurge(stdin);
+	printf("Digite o endereco do cliente: \n");
+	fgets(c->endereco, sizeof(c->endereco), stdin);
+
+	__fpurge(stdin);
+	printf("Digite o telefone para contato: \n");
+	scanf("%d", &c->telefone);
+
+	return *c;
+
+}
+
+
+
+void listar_cliente(lista_cliente *l){
+
+	no_cliente *temp;
+	temp = l->inicio;
+	printf("---------------Lista de clientes------------\n");
+	while(temp != NULL){
+		//printf("%d\n%s\n%s\n%d\n", temp->dado.IDcliente, temp->dado.nome, temp->dado.endereco, temp->dado.telefone);
+		printf("\nIdentificao do cliente: %d\n", temp->dado.IDcliente);
+		printf("\nNome: %s", temp->dado.nome);
+		printf("\nEndereco: %s", temp->dado.endereco);
+		printf("\ncontato: %d\n", temp->dado.telefone);
+		temp = temp->proximo;
+
+	}
+
+	printf("-----------------------------------------------\n");
+	system("read b");
+
+}
+
+void salvar_cliente(lista_cliente *l){
+
+	FILE *fp;
+	fp = (FILE *) fopen("cliente.txt", "wb");
+	if(fp != NULL){
+		no_cliente *temp;
+		temp = l->inicio;
+		while(temp != NULL){
+			fwrite(&temp->dado, sizeof(cliente), 1, fp);
+			temp = temp->proximo;
+		}
+		fclose(fp);
+
+	}
+}
+#include <stdio_ext.h>
+#include<stdlib.h>
+
+void carregar_clientes(lista_cliente *l){
+
+	FILE *fp;
+	cliente *dado;
+	dado = (cliente *) malloc(sizeof(cliente));
+
+	inicializar_lista_cliente(l);
+
+	fp = (FILE *) fopen("cliente.txt", "rb");
+	if(fp != NULL){
+
+		while(fread(dado, sizeof(cliente), 1, fp)){
+
+			adcionar_cliente_inicio(l, *dado);
+			dado = (cliente *) malloc(sizeof(cliente));
+		}
+		fclose(fp);
+	}
+
+}

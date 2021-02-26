@@ -1,0 +1,27 @@
+#ifndef _PEDIDO_H
+#define _PEDIDO_H
+
+#include<stdio.h>
+#include <stdio_ext.h>
+#include <stdlib.h>
+
+
+
+
+typedef struct pedido{
+	int IDcliente;
+	float precototal;
+	int lista;
+	//DATAAAA
+}pedido;
+
+ typedef struct no_pedido{
+ 	pedido dado;
+ 	struct no_pedido *proximo;
+ 	
+ }no_pedido;
+
+ typedef struct lista_pedido{
+	no_pedido *inicio;
+} lista_pedido;
+
